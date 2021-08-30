@@ -1,6 +1,6 @@
 import { TwitterApiTokens } from 'twitter-api-v2';
 import { DISTANCES, MAP_BUFFER_DISTANCES, MAP_IDS } from '../constants';
-const trails = ['brp', 'at'] as const;
+const trails = ['brp', 'at', 'lt'] as const;
 export type TrailString = (typeof trails)[number];
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const isTrail = (x: any): x is TrailString => trails.includes(x);

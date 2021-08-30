@@ -10,9 +10,9 @@ import { MAPBOX_TOKEN as access_token } from '../constants';
 
 type CB = (error: Error | null, results: number) => void;
 
-const before_layer = 'contour-line';
-const padding = '100';
-const dimensions = '700x450';
+const before_layer = 'contour-label';
+const padding = '50';
+const dimensions = '850x500';
 const params = { padding, before_layer, access_token };
 
 const go = () => {
@@ -43,7 +43,7 @@ const go = () => {
         // eslint-disable-next-line
         // @ts-ignore
         const encodedLine = polyline.encode(corrected, 5);
-        const path = `path-2+999999-1+999999-0.4(${encodeURIComponent(encodedLine)})`;
+        const path = `path-2+653d6c-1+653d6c-0.4(${encodeURIComponent(encodedLine)})`;
         const url = `https://api.mapbox.com/styles/v1/${mapId}/static/${path}/auto/${dimensions}@2x?${(new URLSearchParams(params))}`;
         const response = await fetch(url);
         const buffer = await response.buffer();
