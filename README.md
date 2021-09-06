@@ -1,4 +1,4 @@
-# every-mile
+# Every Mile LT
 
 A twitter bot that sequentially posts every mile of Vermont's Long Trail to Twitter.
 
