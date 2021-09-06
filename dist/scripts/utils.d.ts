@@ -1,5 +1,5 @@
 import { TwitterApiTokens } from 'twitter-api-v2';
-declare const trails: readonly ["brp", "at", "lt"];
+declare const trails: readonly ["lt"];
 export declare type TrailString = (typeof trails)[number];
 declare type Extension = 'geojson' | 'png' | 'gif';
 declare const getFilePath: (trailString: TrailString, mile: number | 'all', extension: Extension) => string;
