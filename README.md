@@ -1,6 +1,8 @@
 # every-mile
 
-A collection of twitter bots that sequentially post every mile of a trail, road, or path to Twitter.
+A twitter bot that sequentially posts every mile of Vermont's Long Trail to Twitter.
+
+__99.2% the work of the amazing [Jason Sanford](https://github.com/JasonSanford/every-mile.__)
 
 <img src="screenshots/tweet.jpg" width="335" />
 
@@ -8,24 +10,20 @@ A collection of twitter bots that sequentially post every mile of a trail, road,
 
 | Path | Distance |
 | ----------- | ----------- |
-| [Appalachian Trail](https://twitter.com/every_mile_at) | 2120 |
-| [Blue Ridge Parkway](https://twitter.com/every_mile_brp) | 469 |
+| [Long Trail](https://twitter.com/every_mile_lt) | 249 |
 
 
-<a href="https://twitter.com/every_mile_brp">
-  <img alt="Twitter Follow badge" src="https://img.shields.io/twitter/url?label=%40every_mile_brp&style=social&url=https%3A%2F%2Ftwitter.com%2Fevery_mile_brp">
+<a href="https://twitter.com/every_mile_lt">
+  <img alt="Twitter Follow badge" src="https://img.shields.io/twitter/url?label=%40every_mile_lt&style=social&url=https%3A%2F%2Ftwitter.com%2Fevery_mile_lt">
 </a>
 
-<a href="https://twitter.com/every_mile_at">
-  <img alt="Twitter Follow badge" src="https://img.shields.io/twitter/url?label=%40every_mile_at&style=social&url=https%3A%2F%2Ftwitter.com%2Fevery_mile_at">
-</a>
 
 ## How it works
 
 ### Prepping a bot
 A series of scripts are run on a GeoJSON file representing the entire length of a trail. The following steps assume you have:
 
-1. added a new trail's full geometry as `all.geojson` in the `/geom/{identifier}` directory, where `identifier` is a short string representing the trail's name (`at` => `Appalachian Trail`, `brp` => `Blue Ridge Parkway`).
+1. added a new trail's full geometry as `all.geojson` in the `/geom/{identifier}` directory, where `identifier` is a short string representing the trail's name (`lt` => `Long Trail`).
 2. Added constants for this new trail in `/src/constants.ts` including total trail distance, Mapbox map id, and mile indicator buffer (seen on images).
 
 #### `01_create_mile_sections`
@@ -83,10 +81,10 @@ node dist/scripts/05_generate_maps.js at
 You'll need 4 credentials for each bot, stored in a `.env` file. A `.env-sample` file is provided as an example. These values will automatically be read into environment variables at runtime for use in the Twitter client. Note the `_{identifier}` pattern after each of the 4 credentials. These should match the trail identifier value used in scripts and configuration files.
 
 ```
-TWITTER_APP_KEY_brp=
-TWITTER_APP_SECRET_brp=
-TWITTER_ACCESS_TOKEN_brp=
-TWITTER_ACCESS_SECRET_brp=
+TWITTER_APP_KEY_lt=
+TWITTER_APP_SECRET_lt=
+TWITTER_ACCESS_TOKEN_lt=
+TWITTER_ACCESS_SECRET_lt=
 
 ```
 
