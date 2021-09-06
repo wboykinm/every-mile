@@ -2,7 +2,7 @@
 
 A twitter bot that sequentially posts every mile of Vermont's Long Trail to Twitter.
 
-__99.2% the work of the amazing [Jason Sanford](https://github.com/JasonSanford/every-mile.__)
+__99.2% the work of the amazing [Jason Sanford](https://github.com/JasonSanford/every-mile).__
 
 <img src="screenshots/tweet.jpg" width="335" />
 
