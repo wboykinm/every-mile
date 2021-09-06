@@ -11,7 +11,7 @@ import { MAPBOX_TOKEN as access_token } from '../constants';
 type CB = (error: Error | null, results: number) => void;
 
 const before_layer = 'contour-label';
-const padding = '50';
+const padding = '80';
 const dimensions = '850x500';
 const params = { padding, before_layer, access_token };
 

@@ -12,7 +12,7 @@ const polyline_1 = __importDefault(require("@mapbox/polyline"));
 const utils_1 = require("./utils");
 const constants_1 = require("../constants");
 const before_layer = 'contour-label';
-const padding = '50';
+const padding = '80';
 const dimensions = '850x500';
 const params = { padding, before_layer, access_token: constants_1.MAPBOX_TOKEN };
 const go = () => {
