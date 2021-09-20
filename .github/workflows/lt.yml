@@ -29,7 +29,7 @@ jobs:
       - name: Commit it
         run: |
           git config --global user.name 'Bill Morris'
-          git config --global user.email 'bill@billmorris.iom'
+          git config --global user.email 'bill@billmorris.io'
           git remote set-url origin https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}
           git commit -am "Tweeted Long Trail"
           git push
