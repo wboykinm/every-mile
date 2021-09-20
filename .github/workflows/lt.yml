@@ -25,7 +25,7 @@ jobs:
           echo TWITTER_ACCESS_TOKEN_lt=${{ secrets.TWITTER_ACCESS_TOKEN_LT }} >> .env
           echo TWITTER_ACCESS_SECRET_lt=${{ secrets.TWITTER_ACCESS_SECRET_LT }} >> .env
       - name: Tweet it
-        run: node dist/scripts/tweet_a_mile.js at
+        run: node dist/scripts/tweet_a_mile.js lt
       - name: Commit it
         run: |
           git config --global user.name 'Bill Morris'
