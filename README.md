@@ -88,6 +88,8 @@ TWITTER_ACCESS_SECRET_lt=
 
 ```
 
+These credentials variables must be stored as separate repository secrets on github - in `Settings` --> `Secrets` --> `New Repository Secret`
+
 ### Posting
 
 This step assumes you have set up a new GitHub workflow at `/.github/workflows/{identfier}.yml` representing the new trail.
