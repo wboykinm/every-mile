@@ -1,0 +1,69 @@
+<!-- Code from d3-graph-gallery.com -->
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<!-- Load d3.js -->
+<script src="d3.v4.js"></script>
+
+<!-- Create a div where the graph will take place -->
+<div id="profile"></div>
+
+<script>
+
+// set the dimensions and margins of the graph
+var margin = {top: 10, right: 30, bottom: 30, left: 50},
+    width = 600 - margin.left - margin.right,
+    height = 180 - margin.top - margin.bottom;
+
+// append the svg object to the body of the page
+var svg = d3.select("#profile")
+  .append("svg")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform",
+          "translate(" + margin.left + "," + margin.top + ")");
+
+//Read the data
+d3.json("mile_current.geojson",
+  function(data) {
+    const meters_list = data.properties.elevations
+    const list = []
+    // Construct a set of elevations per distance
+    for (let m = 0; m < meters_list.length; m++) {
+      var entry = {
+        distance: Math.round(((1 / meters_list.length * m) + Number.EPSILON) * 100) / 100,
+        elev_ft: Math.round(meters_list[m] * 3.28084)
+      }
+      list.push(entry)
+    }
+
+    var x = d3.scaleLinear()
+      .domain(d3.extent(list, function(d) { return d.distance; }))
+      .range([ 0, width ]);
+
+    svg.append("g")
+      .attr("transform", "translate(0," + height + ")")
+      .call(d3.axisBottom(x));
+
+    var y = d3.scaleLinear()
+      .domain(d3.extent(list, function(d) { return d.elev_ft; }))
+      .range([ height, 0 ]);
+    svg.append("g")
+      .call(d3.axisLeft(y));
+
+    svg.append("path")
+      .datum(list)
+      .attr("fill", "#CBA3D2")
+      .attr("stroke", "#653d6c")
+      .attr("stroke-width", 1.5)
+      .attr("d", d3.area()
+        .x(function(d) { return x(d.distance) })
+        .y0(y(d3.min(list, function(d) { return d.elev_ft; })))
+        .y1(function(d) { return y(d.elev_ft) })
+        .curve(d3.curveCardinal.tension(0.5))
+      )
+
+})
+
+</script>

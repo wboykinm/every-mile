@@ -11,7 +11,7 @@ import { MAPBOX_TOKEN as access_token } from '../constants';
 type CB = (error: Error | null, results: number) => void;
 
 const before_layer = 'contour-label';
-const padding = '80';
+const padding = '120';
 const dimensions = '850x500';
 const params = { padding, before_layer, access_token };
 
@@ -30,21 +30,24 @@ const go = () => {
   for (let mile = 1; mile <= DISTANCE; mile++) {
     tasks.push((cb: CB) => {
       setTimeout(async () => {
-        console.log(`Processing mile ${mile}`);
+        //console.log(`Processing mile ${mile}`);
         const filePath = getFilePath(trailArg, mile, 'geojson');
         const file = fs.readFileSync(filePath);
         const section = JSON.parse(file.toString());
-        const bufferedLineAsPolygon = turfBuffer(section.geometry, getBufferDistance(trailArg));
+        //const bufferedLineAsPolygon = turfBuffer(section.geometry, getBufferDistance(trailArg));
         // Some trails that snake back onto themselves and form a complex polygon
         // break here, so make the buffer smaller until it works. 0.045 generally does
-        // const bufferedLineAsPolygon = turfBuffer(section.geometry, 0.045);
+        const bufferedLineAsPolygon = turfBuffer(section.geometry, 0.025);
         const bufferedLineAsLine = polygonToLine(bufferedLineAsPolygon);
+        //console.log(bufferedLineAsLine)
         const corrected = bufferedLineAsLine.geometry.coordinates.map(([lng, lat]) => [lat, lng]);
+        //console.log(corrected)
         // eslint-disable-next-line
         // @ts-ignore
         const encodedLine = polyline.encode(corrected, 5);
-        const path = `path-2+653d6c-1+653d6c-0.4(${encodeURIComponent(encodedLine)})`;
+        const path = `path-4+98709F-1+E4BCEB-0.4(${encodeURIComponent(encodedLine)})`;
         const url = `https://api.mapbox.com/styles/v1/${mapId}/static/${path}/auto/${dimensions}@2x?${(new URLSearchParams(params))}`;
+        //console.log(url)
         const response = await fetch(url);
         const buffer = await response.buffer();
         fs.writeFileSync(getFilePath(trailArg, mile, 'png'), buffer);
