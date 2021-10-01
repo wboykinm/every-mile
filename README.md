@@ -82,7 +82,7 @@ The elevation data that's already been collected in step 4 can be used to create
 
 ```sh
 cd dist/profile/
-bash 06_generate_profiles.sh
+bash 06_generate_profiles.sh lt
 cd ../../
 ```
 

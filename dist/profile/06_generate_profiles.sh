@@ -1,9 +1,9 @@
 # Make a profile chart image
 # USAGE:
-# bash 06_generate_profiles.sh
+# bash 06_generate_profiles.sh <trail abbreviation>
 
 # Loop through the geojson files
-TRAILSTRING='lt'
+TRAILSTRING=$1
 
 for m in $(ls ../../geom/${TRAILSTRING}/mile_*.geojson); do
   base=$(basename ${m%.geojson})
