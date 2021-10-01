@@ -2,7 +2,7 @@ import fs from 'fs';
 import TwitterApi from 'twitter-api-v2';
 import { config } from 'dotenv';
 
-import { getFilePath, metersToFeet, getTrailArg, getDistance, getTwitterClientConfig } from './utils';
+import { getFilePath, getProFilePath, metersToFeet, getTrailArg, getDistance, getTwitterClientConfig } from './utils';
 
 config();
 
@@ -60,7 +60,11 @@ async function go() {
       const status = statusParts.join('\n');
 
       let mediaFilePath = getFilePath(trailArg, mile, 'png');
+      // getProFilePath - get it? i'm so sorry about this.
+      let profileFilePath = getProFilePath(trailArg, mile, 'png');
+
       let media = fs.readFileSync(mediaFilePath);
+      let profile = fs.readFileSync(profileFilePath);
       let mediaType: MediaType = 'png';
 
       try {
@@ -72,8 +76,13 @@ async function go() {
       }
 
       try {
-        const mediaId = await client.v1.uploadMedia(media, { type: mediaType });
-        const statusResponse = await client.v1.tweet(status, { media_ids: [mediaId] });
+        const mediaIds = await Promise.all([
+          // upload map
+          client.v1.uploadMedia(media, { type: mediaType }),
+          // upload profile chart
+          client.v1.uploadMedia(profile, { type: 'png' }),
+        ]);
+        const statusResponse = await client.v1.tweet(status, { media_ids: mediaIds });
         console.log(statusResponse);
         section.properties.has_tweeted = true;
         fs.writeFileSync(geojsonFilePath, JSON.stringify(section));
@@ -88,4 +97,3 @@ async function go() {
 }
 
 go();
-

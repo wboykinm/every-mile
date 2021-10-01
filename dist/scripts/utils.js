@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getTwitterClientConfig = exports.getBufferDistance = exports.getMapId = exports.getDistance = exports.getTrailArg = exports.metersToFeet = exports.getFilePath = void 0;
+exports.getTwitterClientConfig = exports.getBufferDistance = exports.getMapId = exports.getDistance = exports.getTrailArg = exports.metersToFeet = exports.getProFilePath = exports.getFilePath = void 0;
 const constants_1 = require("../constants");
 const trails = ['lt'];
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,6 +20,16 @@ const getFilePath = (trailString, mile, extension) => {
     return `./${directory}/${trailString}/${fileName}`;
 };
 exports.getFilePath = getFilePath;
+const getProFilePath = (trailString, mile, extension) => {
+    const directory = extensionDirMap[extension];
+    const padAmount = getDistance(trailString).toString().length;
+    let fileName = `profile_mile_${mile.toString().padStart(padAmount, '0')}.${extension}`;
+    if (mile === 'all') {
+        fileName = 'all.geojson';
+    }
+    return `./${directory}/${trailString}/${fileName}`;
+};
+exports.getProFilePath = getProFilePath;
 const metersToFeet = (meters) => {
     return meters * 3.28084;
 };

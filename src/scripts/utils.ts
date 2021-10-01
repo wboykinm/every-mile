@@ -25,6 +25,18 @@ const getFilePath = (trailString: TrailString, mile: number | 'all', extension: 
   return `./${directory}/${trailString}/${fileName}`;
 };
 
+const getProFilePath = (trailString: TrailString, mile: number | 'all', extension: Extension): string => {
+  const directory = extensionDirMap[extension];
+  const padAmount = getDistance(trailString).toString().length;
+  let fileName = `profile_mile_${mile.toString().padStart(padAmount, '0')}.${extension}`;
+
+  if (mile === 'all') {
+    fileName = 'all.geojson';
+  }
+
+  return `./${directory}/${trailString}/${fileName}`;
+};
+
 const metersToFeet = (meters: number): number => {
   return meters * 3.28084;
 };
@@ -56,4 +68,4 @@ const getTwitterClientConfig = (trailString: TrailString): TwitterApiTokens => {
   };
 };
 
-export { getFilePath, metersToFeet, getTrailArg, getDistance, getMapId, getBufferDistance, getTwitterClientConfig };
+export { getFilePath, getProFilePath, metersToFeet, getTrailArg, getDistance, getMapId, getBufferDistance, getTwitterClientConfig };

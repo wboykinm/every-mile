@@ -47,7 +47,10 @@ async function go() {
             statusParts.push(`Max elevation: ${maxElevFeetDisplay} ft (${maxElevMetersDisplay} m)`);
             const status = statusParts.join('\n');
             let mediaFilePath = utils_1.getFilePath(trailArg, mile, 'png');
+            // getProFilePath - get it? i'm so sorry about this.
+            let profileFilePath = utils_1.getProFilePath(trailArg, mile, 'png');
             let media = fs_1.default.readFileSync(mediaFilePath);
+            let profile = fs_1.default.readFileSync(profileFilePath);
             let mediaType = 'png';
             try {
                 mediaFilePath = utils_1.getFilePath(trailArg, mile, 'gif');
@@ -58,8 +61,13 @@ async function go() {
                 console.log('No gif found');
             }
             try {
-                const mediaId = await client.v1.uploadMedia(media, { type: mediaType });
-                const statusResponse = await client.v1.tweet(status, { media_ids: [mediaId] });
+                const mediaIds = await Promise.all([
+                    // upload map
+                    client.v1.uploadMedia(media, { type: mediaType }),
+                    // upload profile chart
+                    client.v1.uploadMedia(profile, { type: 'png' }),
+                ]);
+                const statusResponse = await client.v1.tweet(status, { media_ids: mediaIds });
                 console.log(statusResponse);
                 section.properties.has_tweeted = true;
                 fs_1.default.writeFileSync(geojsonFilePath, JSON.stringify(section));
