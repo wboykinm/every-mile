@@ -60,6 +60,8 @@ async function go() {
             catch (error) {
                 console.log('No gif found');
             }
+            console.log(media);
+            console.log(profile);
             try {
                 const mediaIds = await Promise.all([
                     // upload map
