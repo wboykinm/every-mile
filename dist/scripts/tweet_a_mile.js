@@ -48,9 +48,9 @@ async function go() {
             const status = statusParts.join('\n');
             let mediaFilePath = utils_1.getFilePath(trailArg, mile, 'png');
             // getProFilePath - get it? i'm so sorry about this.
-            let profileFilePath = utils_1.getProFilePath(trailArg, mile, 'png');
+            //let profileFilePath = getProFilePath(trailArg, mile, 'png');
             let media = fs_1.default.readFileSync(mediaFilePath);
-            let profile = fs_1.default.readFileSync(profileFilePath);
+            //let profile = fs.readFileSync(profileFilePath);
             let mediaType = 'png';
             try {
                 mediaFilePath = utils_1.getFilePath(trailArg, mile, 'gif');
@@ -60,14 +60,14 @@ async function go() {
             catch (error) {
                 console.log('No gif found');
             }
-            console.log(media);
-            console.log(profile);
+            //console.log(media);
+            //console.log(profile);
             try {
                 const mediaIds = await Promise.all([
                     // upload map
-                    client.v1.uploadMedia(Buffer.from(media), { type: mediaType }),
+                    client.v1.uploadMedia(media, { type: mediaType }),
                     // upload profile chart
-                    client.v1.uploadMedia(Buffer.from(profile), { type: 'png' })
+                    //client.v1.uploadMedia(Buffer.from(profile), { type: 'png' })
                 ]);
                 console.log(mediaIds);
                 const statusResponse = await client.v1.tweet(status, { media_ids: mediaIds });
