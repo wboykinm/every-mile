@@ -65,9 +65,9 @@ async function go() {
             try {
                 const mediaIds = await Promise.all([
                     // upload map
-                    client.v1.uploadMedia(media, { type: mediaType }),
+                    client.v1.uploadMedia(Buffer.from(media), { type: mediaType }),
                     // upload profile chart
-                    client.v1.uploadMedia(profile, { type: 'png' })
+                    client.v1.uploadMedia(Buffer.from(profile), { type: 'png' })
                 ]);
                 console.log(mediaIds);
                 const statusResponse = await client.v1.tweet(status, { media_ids: mediaIds });
