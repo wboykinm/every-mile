@@ -76,6 +76,8 @@ async function go() {
       }
 
       try {
+        console.log(media);
+        console.log(profile);
         const mediaIds = await Promise.all([
           // upload map
           client.v1.uploadMedia(media, { type: mediaType }),
