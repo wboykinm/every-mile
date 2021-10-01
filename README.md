@@ -76,9 +76,19 @@ A trail identifier must be passed as a parameter when running this script.
 node dist/scripts/05_generate_maps.js at
 ```
 
+#### `06_generate_profiles`
+
+The elevation data that's already been collected in step 4 can be used to create a D3.js elevation profile, which we screengrab using the node puppeteer module and place in the same folder as the `mile_*` maps, to be posted alongside them in each tweet. For silly http server reasons we activate this script from within its folder:
+
+```sh
+cd dist/profile/
+bash 06_generate_profiles.sh
+cd ../../
+```
+
 #### Credentials
 
-You'll need 4 credentials for each bot, stored in a `.env` file. A `.env-sample` file is provided as an example. These values will automatically be read into environment variables at runtime for use in the Twitter client. Note the `_{identifier}` pattern after each of the 4 credentials. These should match the trail identifier value used in scripts and configuration files.
+With all these files in hand, it's time to set up the github actions. You'll need 4 credentials for each bot, stored in a `.env` file. A `.env-sample` file is provided as an example. These values will automatically be read into environment variables at runtime for use in the Twitter client. Note the `_{identifier}` pattern after each of the 4 credentials. These should match the trail identifier value used in scripts and configuration files.
 
 ```
 TWITTER_APP_KEY_lt=

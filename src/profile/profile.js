@@ -1,5 +1,4 @@
 #!/usr/bin/env node
-// USAGE: node histo.js <output filename>
 
 "use strict"
 // dependencies
