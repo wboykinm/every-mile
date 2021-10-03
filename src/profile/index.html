@@ -4,7 +4,11 @@
 
 <!-- Load d3.js -->
 <script src="d3.v4.js"></script>
-
+<style>
+  body {
+    background-color: #D3E2B7;
+  }
+</style>
 <!-- Create a div where the graph will take place -->
 <div id="profile"></div>
 
@@ -54,8 +58,8 @@ d3.json("mile_current.geojson",
 
     svg.append("path")
       .datum(list)
-      .attr("fill", "#CBA3D2")
-      .attr("stroke", "#653d6c")
+      .attr("fill", "#7C618A")
+      .attr("stroke", "#634274")
       .attr("stroke-width", 1.5)
       .attr("d", d3.area()
         .x(function(d) { return x(d.distance) })

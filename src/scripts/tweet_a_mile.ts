@@ -40,7 +40,7 @@ async function go() {
         }
       }
 
-      const mileageText = `Mile ${mile} of ${DISTANCE.toLocaleString()}`;
+      const mileageText = `Mile ${mile}`;
 
       if (placeParts.length > 0) {
         statusParts.push(`${mileageText}: ${placeParts.join(', ')}`);
