@@ -18,9 +18,7 @@ async function go() {
   const DISTANCE = getDistance(trailArg);
 
   const twitterClientConfig = getTwitterClientConfig(trailArg);
-  console.log(twitterClientConfig)
   const client = new TwitterApi(twitterClientConfig);
-  console.log(client)
 
   for (let mile = 1; mile <= DISTANCE; mile++) {
     console.log(`Processing mile ${mile}`);
@@ -75,16 +73,19 @@ async function go() {
         console.log('No gif found');
       }
 
-      //console.log(media);
+      console.log(mediaType);
       //console.log(profile);
 
       try {
+        console.log("starting image upload")
         const mediaIds = await Promise.all([
           // upload map
           client.v1.uploadMedia(media, { type: mediaType }),
           // upload profile chart
           //client.v1.uploadMedia(Buffer.from(profile), { type: 'png' })
         ]);
+        console.log("finished image upload")
+
         console.log(mediaIds);
         const statusResponse = await client.v1.tweet(status, { media_ids: mediaIds });
         console.log(statusResponse);
