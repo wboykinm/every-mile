@@ -15,7 +15,9 @@ async function go() {
     }
     const DISTANCE = utils_1.getDistance(trailArg);
     const twitterClientConfig = utils_1.getTwitterClientConfig(trailArg);
+    console.log(twitterClientConfig);
     const client = new twitter_api_v2_1.default(twitterClientConfig);
+    console.log(client);
     for (let mile = 1; mile <= DISTANCE; mile++) {
         console.log(`Processing mile ${mile}`);
         const geojsonFilePath = utils_1.getFilePath(trailArg, mile, 'geojson');

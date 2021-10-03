@@ -18,8 +18,9 @@ async function go() {
   const DISTANCE = getDistance(trailArg);
 
   const twitterClientConfig = getTwitterClientConfig(trailArg);
-
+  console.log(twitterClientConfig)
   const client = new TwitterApi(twitterClientConfig);
+  console.log(client)
 
   for (let mile = 1; mile <= DISTANCE; mile++) {
     console.log(`Processing mile ${mile}`);
