@@ -46,6 +46,7 @@ async function go() {
             const maxElevMetersDisplay = parseInt(max_elevation.toFixed(0)).toLocaleString();
             statusParts.push(`Max elevation: ${maxElevFeetDisplay} ft (${maxElevMetersDisplay} m)`);
             const status = statusParts.join('\n');
+            console.log(status);
             let mediaFilePath = utils_1.getFilePath(trailArg, mile, 'png');
             // getProFilePath - get it? i'm so sorry about this.
             let profileFilePath = utils_1.getProFilePath(trailArg, mile, 'png');
