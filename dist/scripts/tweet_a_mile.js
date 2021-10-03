@@ -49,6 +49,7 @@ async function go() {
             let mediaFilePath = utils_1.getFilePath(trailArg, mile, 'png');
             // getProFilePath - get it? i'm so sorry about this.
             //let profileFilePath = getProFilePath(trailArg, mile, 'png');
+            console.log(mediaFilePath);
             let media = fs_1.default.readFileSync(mediaFilePath);
             //let profile = fs.readFileSync(profileFilePath);
             let mediaType = 'png';
