@@ -71,7 +71,7 @@ async function go() {
                 ]);
                 console.log("finished image upload");
                 console.log(mediaIds);
-                const statusResponse = await client.v1.tweet(status, { media_ids: mediaIds });
+                const statusResponse = await client.v1.tweet(status, { media_ids: mediaIds.join(',') });
                 console.log(statusResponse);
                 section.properties.has_tweeted = true;
                 fs_1.default.writeFileSync(geojsonFilePath, JSON.stringify(section));
