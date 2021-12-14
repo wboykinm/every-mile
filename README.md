@@ -123,3 +123,12 @@ static-server -p 8000
 ```
 
 Then hit http://localhost:8000/ and wait for the download prompt!
+
+Then turn it into a gif and commit it
+
+```sh
+ffmpeg -i ../images/lt/mile_${MILE}.mp4 \
+  -vf "fps=10,scale=600:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
+  -loop -1 \
+  ../images/lt/mile_${MILE}.gif
+```
