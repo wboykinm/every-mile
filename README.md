@@ -111,3 +111,15 @@ After a successful post, `trail.properties.has_tweeted` is set to `true` so we k
 ## Extra
 
 For each post the bot looks for a gif before the png. Some mile sections are particularly interesting and look great when animated. If a gif is found it takes priority and is shown instead of the png.
+
+### Generating animations
+
+```sh
+MILE=<3-digit mile number>
+cd animate
+echo "const feature = " > feature.js
+cat ../geom/lt/mile_${MILE}.geojson >> feature.js
+static-server -p 8000
+```
+
+Then hit http://localhost:8000/ and wait for the download prompt!
