@@ -63,12 +63,21 @@ async function go() {
             }
             try {
                 console.log("starting image upload");
-                const mediaIds = await Promise.all([
-                    // upload map
-                    client.v1.uploadMedia(media, { type: mediaType }),
-                    // upload profile chart
-                    client.v1.uploadMedia(profile, { type: 'png' })
-                ]);
+                let mediaIds;
+                if (mediaType = 'gif') {
+                    mediaIds = await Promise.all([
+                        // upload gif
+                        client.v1.uploadMedia(media, { type: mediaType }),
+                    ]);
+                }
+                else {
+                    mediaIds = await Promise.all([
+                        // upload map
+                        client.v1.uploadMedia(media, { type: mediaType }),
+                        // upload profile chart
+                        client.v1.uploadMedia(profile, { type: 'png' })
+                    ]);
+                }
                 console.log("finished image upload");
                 console.log(mediaIds);
                 const statusResponse = await client.v1.tweet(status, { media_ids: mediaIds.join(',') });
