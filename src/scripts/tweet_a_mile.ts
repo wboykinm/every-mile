@@ -76,17 +76,17 @@ async function go() {
       try {
         console.log("starting image upload")
         let mediaIds
-        if (mediaType = 'gif') {
-          mediaIds = await Promise.all([
-            // upload gif
-            client.v1.uploadMedia(media, { type: mediaType }),
-          ]);
-        } else {
+        if (mediaType = 'png') {
           mediaIds = await Promise.all([
             // upload map
             client.v1.uploadMedia(media, { type: mediaType }),
             // upload profile chart
             client.v1.uploadMedia(profile, { type: 'png' })
+          ]);
+        } else {
+          mediaIds = await Promise.all([
+            // upload gif
+            client.v1.uploadMedia(media, { type: mediaType }),
           ]);
         }
 
