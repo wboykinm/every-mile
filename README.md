@@ -14,7 +14,7 @@ __99.2% the work of the amazing [Jason Sanford](https://github.com/JasonSanford/
 
 
 <a href="https://twitter.com/every_mile_lt">
-  <img alt="Twitter Follow badge" src="https://img.shields.io/twitter/url?label=%40every_mile_lt&style=social&url=https%3A%2F%2Ftwitter.com%2Fevery_mile_lt">
+ <img width="587" alt="image" src="https://user-images.githubusercontent.com/735463/156773209-9b247394-9d4b-4f6b-975e-f087096bcefd.png">
 </a>
 
 
