@@ -2,17 +2,20 @@
 
 A twitter bot that sequentially posts every mile of Vermont's Long Trail to Twitter.
 
-__96.2% the work of the amazing [Jason Sanford](https://github.com/JasonSanford/every-mile).__
+__99.2% the work of the amazing [Jason Sanford](https://github.com/JasonSanford/every-mile).__
 
-<a href="https://twitter.com/every_mile_lt">
- <img width="587" alt="image" src="https://user-images.githubusercontent.com/735463/156773209-9b247394-9d4b-4f6b-975e-f087096bcefd.png">
-</a>
+<img src="screenshots/tweet.jpg" width="335" />
 
 ## Active Bots
 
 | Path | Distance |
 | ----------- | ----------- |
 | [Long Trail](https://twitter.com/every_mile_lt) | 249 |
+
+
+<a href="https://twitter.com/every_mile_lt">
+  <img alt="Twitter Follow badge" src="https://img.shields.io/twitter/url?label=%40every_mile_lt&style=social&url=https%3A%2F%2Ftwitter.com%2Fevery_mile_lt">
+</a>
 
 
 ## How it works
@@ -124,8 +127,8 @@ Then hit http://localhost:8000/ and wait for the download prompt!
 Then turn it into a gif and commit it
 
 ```sh
-ffmpeg -i ../images/lt/mile_${MILE}.mp4 \
+ffmpeg -i gifs/mile_${MILE}.mp4 \
   -vf "fps=10,scale=600:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
   -loop -1 \
-  ../images/lt/mile_${MILE}.gif
+  gifs/mile_${MILE}.gif
 ```
