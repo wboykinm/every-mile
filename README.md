@@ -127,7 +127,7 @@ Then hit http://localhost:8000/ and wait for the download prompt!
 Then turn it into a gif and commit it
 
 ```sh
-ffmpeg -itsscale 0.45 \
+ffmpeg -itsscale 0.3 \
   -i gifs/mile_${MILE}.mp4 \
   -vf "fps=10,scale=600:-1:flags=lanczos,split[s0][s1];[s0]palettegen[p];[s1][p]paletteuse" \
   -loop -1 \
